@@ -1,0 +1,11 @@
+- High Level Basic Requirements
+    - User can write information in the box, click the save button, and the document is saved to the database [done]
+    - User can read saved notes in a section, sorted by date in descending order from latest to oldest
+    - User can delete notes that are saved [done]
+
+- Eventual capabilities
+    - Pretect against SQLi with input sanitization
+    - NLP on notes (semantic analysis, urgency, determine if a note needs reminders)
+    - Allow user to select a time frame of when they want to be notified (if they do)
+    - Capability to send push notifications to the user if they need reminders
+    
