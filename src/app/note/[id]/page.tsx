@@ -6,7 +6,9 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export default function NotePage() {
-  const [note, setNote] = useState<{ id: string; content: string } | null>(null);
+  const [note, setNote] = useState<{ id: string; content: string } | null>(
+    null
+  );
   const [loading, setLoading] = useState(true);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const { id } = useParams();
@@ -70,10 +72,15 @@ export default function NotePage() {
 
       {/* 📝 Note Content */}
       <h1 className="text-2xl font-bold mb-4">Note</h1>
-      <p className="border p-4 bg-gray-100 dark:bg-gray-800 rounded-md">{note.content}</p>
+      <p className="border p-4 bg-gray-100 dark:bg-gray-800 rounded-md">
+        {note.content}
+      </p>
 
       {/* 🗑️ Delete Button */}
-      <Button className="mt-4 bg-red-600 hover:bg-red-700" onClick={() => setConfirmDelete(true)}>
+      <Button
+        className="mt-4 bg-red-600 hover:bg-red-700"
+        onClick={() => setConfirmDelete(true)}
+      >
         Delete Note
       </Button>
 
@@ -83,7 +90,10 @@ export default function NotePage() {
           <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
             <p className="mb-4">Are you sure you want to delete this note?</p>
             <div className="flex gap-4">
-              <Button className="bg-red-600 hover:bg-red-700" onClick={handleDelete}>
+              <Button
+                className="bg-red-600 hover:bg-red-700"
+                onClick={handleDelete}
+              >
                 Yes, Delete
               </Button>
               <Button variant="outline" onClick={() => setConfirmDelete(false)}>

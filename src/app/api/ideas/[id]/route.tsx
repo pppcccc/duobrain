@@ -4,7 +4,10 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 // 🔥 Fetch a single idea by ID
-export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
   console.log("Incoming request for note ID:", params.id); // ✅ Debugging log
 
   if (!params.id) {
@@ -25,12 +28,18 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
     return NextResponse.json({ note }, { status: 200 });
   } catch (error) {
     console.error("❌ Error fetching note:", error);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 }
+    );
   }
 }
 
 // 🔥 Delete an idea by ID
-export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
   console.log("Incoming delete request for ID:", params.id); // ✅ Debugging log
 
   if (!params.id) {
@@ -52,7 +61,9 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: strin
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (error) {
     console.error("❌ Error deleting note:", error);
-    return NextResponse.json({ error: "Failed to delete note" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to delete note" },
+      { status: 500 }
+    );
   }
 }
-

@@ -1,8 +1,15 @@
 import { Server as SocketIOServer } from "socket.io";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { checkDueReminders } from "@/utils/reminderWorker";
+import cron from "node-cron";
 
 // i need to have this in pages when i already do app
 // why? god knows.
+
+// Run every minute
+cron.schedule("* * * * *", () => {
+  checkDueReminders();
+});
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if ((res.socket as any).server.io) {
@@ -28,7 +35,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         console.log("Client disconnected:", socket.id);
       });
     });
-    
   }
   res.end();
 }

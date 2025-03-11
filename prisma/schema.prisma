@@ -16,6 +16,13 @@ model User {
   updatedAt      DateTime @updatedAt
 }
 
+model Subscription {
+  id        String @id @default(uuid())
+  endpoint  String @unique
+  p256dh    String
+  auth      String
+  createdAt DateTime @default(now())
+}
 
 model Idea {
   id          String   @id @default(uuid())
@@ -23,12 +30,15 @@ model Idea {
   content     String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  reminders   Reminder[] 
 }
 
 model Reminder {
-  id          String   @id @default(uuid())
-  message     String
-  dueDate     DateTime
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id        String   @id @default(uuid())
+  message   String
+  dueDate   DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ideaId    String   
+  idea      Idea     @relation(fields: [ideaId], references: [id], onDelete: Cascade)
 }
